@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peter Youn - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #10b981;
+            --secondary: #34d399;
+            --accent: #059669;
+            --dark: #1e293b;
+            --light: #f1f5f9;
+            --text: #334155;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #d1fae5 0%, #ecfdf5 50%, #f0fdf4 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-wrapper {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 1000px;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a.icon-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            font-size: 1.3em;
+        }
+
+        .contact-links a.icon-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .download-cv {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95em;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+        }
+
+        .download-cv:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .location {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        /* Intro Section */
+        .intro {
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-left: 6px solid var(--primary);
+            font-size: 1.15em;
+            line-height: 1.9;
+            color: var(--dark);
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1);
+        }
+
+        .content {
+            padding: 60px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            color: var(--dark);
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2::before {
+            content: '';
+            width: 6px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        /* Skills Section - Visual Cards */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.08);
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.4);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .skill-category p {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Tools Section with Logos */
+        .tools-wrapper {
+            margin-top: 30px;
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .tools-slider {
+            display: flex;
+            gap: 50px;
+            animation: slide 30s linear infinite;
+            width: fit-content;
+        }
+
+        .tools-slider:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .tool-card {
+            background: transparent;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: none;
+            transition: all 0.3s;
+            cursor: default;
+            flex-shrink: 0;
+            min-width: 100px;
+        }
+
+        .tool-card:hover {
+            transform: scale(1.1);
+        }
+
+        .tool-icon {
+            font-size: 3.5em;
+            margin-bottom: 8px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tool-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin: 0 auto 8px;
+            display: block;
+        }
+
+        .tool-card.ga4 .tool-logo,
+        .tool-card.gtm .tool-logo {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 3px;
+        }
+
+        .tool-card.javascript .tool-icon { color: #F7DF1E; }
+        .tool-card.python .tool-icon { color: #3776AB; }
+        .tool-card.excel .tool-icon { color: #217346; }
+        .tool-card.powerpoint .tool-icon { color: #D24726; }
+
+        .tool-card h4 {
+            font-size: 0.85em;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .tool-card .proficiency {
+            font-size: 0.7em;
+            color: #94a3b8;
+        }
+
+        /* Languages */
+        .languages {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .language-item {
+            text-align: center;
+        }
+
+        .language-item h4 {
+            font-size: 1.1em;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .language-item p {
+            font-size: 0.9em;
+            color: #64748b;
+        }
+
+        /* Timeline for Experience */
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.08);
+        }
+
+        .timeline-item:hover {
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.4);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -62px;
+            top: 35px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px white;
+        }
+
+        .timeline-item.active::before {
+            background: var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+            }
+        }
+
+        .timeline-item h3 {
+            color: var(--dark);
+            font-size: 1.6em;
+            margin-bottom: 8px;
+        }
+
+        .role {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .meta {
+            color: #64748b;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .meta i {
+            color: var(--primary);
+        }
+
+        .achievements {
+            list-style: none;
+        }
+
+        .achievements li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .achievements li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .metric {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .youtube-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            margin-left: 15px;
+        }
+
+        .youtube-link:hover {
+            color: #ff0000;
+        }
+
+        .youtube-link .arrow {
+            color: var(--primary);
+        }
+
+        .youtube-link i {
+            color: #ff0000;
+            font-size: 1.1em;
+        }
+
+        .linkedin-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            margin-left: 15px;
+        }
+
+        .linkedin-link:hover {
+            color: #0077b5;
+        }
+
+        .linkedin-link .arrow {
+            color: var(--primary);
+        }
+
+        .linkedin-link i {
+            color: #0077b5;
+            font-size: 1.1em;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.85em;
+            transition: all 0.3s;
+            position: absolute;
+            bottom: 20px;
+            right: 25px;
+        }
+
+        .project-link:hover {
+            color: #0077b5;
+        }
+
+        .project-link .arrow {
+            color: var(--primary);
+        }
+
+        .project-link i {
+            color: #0077b5;
+            font-size: 1.1em;
+        }
+
+        /* Awards Section */
+        .awards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .award-item {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 20px 25px;
+            border-radius: 10px;
+            border-left: 4px solid #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.08);
+        }
+
+        .award-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.15);
+            background: rgba(255, 255, 255, 0.7);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .award-item .trophy {
+            font-size: 2em;
+            color: #f59e0b;
+            flex-shrink: 0;
+        }
+
+        .award-content h4 {
+            font-size: 1.1em;
+            color: var(--dark);
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .award-content p {
+            color: #64748b;
+            font-size: 0.9em;
+        }
+
+        .award-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.85em;
+            transition: all 0.3s;
+            margin-left: 10px;
+        }
+
+        .award-link:hover {
+            color: #0077b5;
+        }
+
+        .award-link.youtube:hover {
+            color: #ff0000;
+        }
+
+        .award-link .arrow {
+            color: var(--primary);
+        }
+
+        .award-link i.fa-linkedin {
+            color: #0077b5;
+        }
+
+        .award-link i.fa-youtube {
+            color: #ff0000;
+        }
+
+        /* Education Card */
+        .education-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 16px;
+            border-left: 6px solid var(--secondary);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1);
+        }
+
+        .education-card h3 {
+            color: var(--dark);
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .education-card .period {
+            color: #64748b;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .education-card ul {
+            list-style: none;
+        }
+
+        .education-card li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .education-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 50px 30px;
+            }
+
+            .header-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .intro, .content {
+                padding: 30px;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline-item::before {
+                left: -42px;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-wrapper">
+                <img src="Profile/11 증명사진.png" alt="Peter Youn" class="profile-image">
+                <div class="header-content">
+                    <h1>PETER YOUN</h1>
+                    <p class="tagline">Founder-in-Training | Psychology Undergraduate | Lean Validation Enthusiast</p>
+                    <div class="contact-links">
+                        <a href="mailto:gyuhoyoun@gmail.com" title="Email" class="icon-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+447341116621" title="Phone" class="icon-link">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/gyuho-youn-3210722ba/" target="_blank" title="LinkedIn" class="icon-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="CV/02 GYUHO YOUN_CV.pdf" download="Peter_Youn_CV.pdf" class="download-cv">
+                            <i class="fas fa-download"></i> Download CV
+                        </a>
+                    </div>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> Coventry, UK</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="intro">
+            <p>I focus on getting close to users to identify real problems before building solutions, using surveys, interviews, and live feedback as early PMF signals. My background spans student-facing systems, community experiments, and low-budget market validation under real-world constraints.</p>
+        </div>
+
+        <div class="content">
+            <section id="skills">
+                <h2>Core Competencies</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-search"></i> PMF Discovery & User Research</h3>
+                        <p>Surveys, qualitative interviews, live feedback sessions, insight synthesis</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-rocket"></i> Lean Validation & Execution</h3>
+                        <p>Rapid MVP testing, low-budget experiments, offline-first validation</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-users"></i> Community & Stakeholder Engagement</h3>
+                        <p>Student communities, founder support, cross-functional communication</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-puzzle-piece"></i> Operational Problem Solving</h3>
+                        <p>Mapping breakdowns in communication flows, reducing friction through structure</p>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 1.5em; margin: 50px 0 30px; color: var(--dark);">Tools & Technologies</h3>
+                <div class="tools-wrapper">
+                    <div class="tools-slider">
+                        <div class="tool-card javascript">
+                            <div class="tool-icon"><i class="fab fa-js-square"></i></div>
+                            <h4>JavaScript</h4>
+                        </div>
+                        <div class="tool-card python">
+                            <div class="tool-icon"><i class="fab fa-python"></i></div>
+                            <h4>Python</h4>
+                        </div>
+                        <div class="tool-card notion">
+                            <img src="Profile/notion.png" alt="Notion" class="tool-logo">
+                            <h4>Notion</h4>
+                        </div>
+                        <div class="tool-card excel">
+                            <div class="tool-icon"><i class="fas fa-file-excel"></i></div>
+                            <h4>Excel</h4>
+                        </div>
+                        <div class="tool-card powerpoint">
+                            <div class="tool-icon"><i class="fas fa-file-powerpoint"></i></div>
+                            <h4>PowerPoint</h4>
+                        </div>
+                        <div class="tool-card claude">
+                            <img src="Profile/claude.png" alt="Claude Code" class="tool-logo">
+                            <h4>Claude Code</h4>
+                        </div>
+                        <div class="tool-card replit">
+                            <img src="Profile/replit.png" alt="Replit" class="tool-logo">
+                            <h4>Replit</h4>
+                        </div>
+                        <div class="tool-card ga4">
+                            <img src="Profile/GA4.png" alt="Google Analytics 4" class="tool-logo">
+                            <h4>GA4</h4>
+                        </div>
+                        <div class="tool-card gtm">
+                            <img src="Profile/GTM.webp" alt="Google Tag Manager" class="tool-logo">
+                            <h4>GTM</h4>
+                        </div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="tool-card javascript">
+                            <div class="tool-icon"><i class="fab fa-js-square"></i></div>
+                            <h4>JavaScript</h4>
+                        </div>
+                        <div class="tool-card python">
+                            <div class="tool-icon"><i class="fab fa-python"></i></div>
+                            <h4>Python</h4>
+                        </div>
+                        <div class="tool-card notion">
+                            <img src="Profile/notion.png" alt="Notion" class="tool-logo">
+                            <h4>Notion</h4>
+                        </div>
+                        <div class="tool-card excel">
+                            <div class="tool-icon"><i class="fas fa-file-excel"></i></div>
+                            <h4>Excel</h4>
+                        </div>
+                        <div class="tool-card powerpoint">
+                            <div class="tool-icon"><i class="fas fa-file-powerpoint"></i></div>
+                            <h4>PowerPoint</h4>
+                        </div>
+                        <div class="tool-card claude">
+                            <img src="Profile/claude.png" alt="Claude Code" class="tool-logo">
+                            <h4>Claude Code</h4>
+                        </div>
+                        <div class="tool-card replit">
+                            <img src="Profile/replit.png" alt="Replit" class="tool-logo">
+                            <h4>Replit</h4>
+                        </div>
+                        <div class="tool-card ga4">
+                            <img src="Profile/GA4.png" alt="Google Analytics 4" class="tool-logo">
+                            <h4>GA4</h4>
+                        </div>
+                        <div class="tool-card gtm">
+                            <img src="Profile/GTM.webp" alt="Google Tag Manager" class="tool-logo">
+                            <h4>GTM</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 1.5em; margin: 50px 0 20px; color: var(--dark);">Languages</h3>
+                <div class="languages">
+                    <div class="language-item">
+                        <h4>Korean</h4>
+                        <p>Native</p>
+                    </div>
+                    <div class="language-item">
+                        <h4>English</h4>
+                        <p>Fluent</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="education">
+                <h2>Education</h2>
+                <div class="education-card">
+                    <h3><i class="fas fa-graduation-cap"></i> BSc Psychology</h3>
+                    <p style="font-size: 1.2em; color: var(--primary); font-weight: 600;">Coventry University</p>
+                    <p class="period">Sep 2021 – Expected Jul 2026</p>
+                    <ul>
+                        <li>Focus areas: motivation, performance, behavioural change</li>
+                        <li>Winner, Coventry Elevator Pitching Competition<a href="https://www.linkedin.com/posts/gyuho-youn-3210722ba_11%EC%9B%94-21%EC%9D%BC%EC%96%B4%EC%A0%9C-%EC%9A%B0%EC%97%B0%ED%9E%88-%EA%B8%B0%ED%9A%8C%EB%A5%BC-%EC%96%BB%EC%96%B4-%EB%8C%80%ED%95%99%EA%B5%90%EC%97%90%EC%84%9C-%EC%97%B4%EB%A6%AC%EB%8A%94-%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%ED%94%BC%EC%B9%98-activity-7265707310214250497-DNVh?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEyKJkkBf1_1pmErQJLs7eWl22AoEGzkOF4" target="_blank" class="linkedin-link"><span class="arrow">→</span><i class="fab fa-linkedin"></i><span>Read</span></a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>Experience & Projects</h2>
+                <div class="timeline">
+                    <div class="timeline-item active">
+                        <h3>SYSTEM</h3>
+                        <p class="role">Founder</p>
+                        <p class="meta">
+                            <span><i class="fas fa-building"></i> Coventry University</span>
+                            <span><i class="fas fa-calendar"></i> Jan 2025 – Present</span>
+                        </p>
+                        <ul class="achievements">
+                            <li>Conducted an initial <span class="metric">problem-discovery survey with 50 students</span> to identify recurring pain points in university communication and information access.</li>
+                            <li>Selected for the <span class="metric">Student Venture Accelerator Programme</span>, receiving structured mentorship and feedback during a 6-week acceleration period.</li>
+                            <li>Presented SYSTEM in a live public feedback session with founders and mentors to challenge assumptions and refine the problem definition.<a href="https://www.youtube.com/live/lj_roeivTa0?si=qY4kPM0AX4uBMAyq" target="_blank" class="youtube-link"><span class="arrow">→</span><i class="fab fa-youtube"></i><span>Watch</span></a></li>
+                            <li>Treated surveys, interviews, and live critique as early PMF signals rather than validation, iterating problem framing before committing to solutions.</li>
+                            <li>Guided by the belief that closer proximity to users leads to better product decisions, prioritising direct feedback over assumption-driven design.</li>
+                        </ul>
+                        <a href="https://www.linkedin.com/posts/gyuho-youn-3210722ba_among-many-inefficiencies-the-one-that-stood-activity-7411863946497781760-wgxf?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEyKJkkBf1_1pmErQJLs7eWl22AoEGzkOF4" target="_blank" class="project-link"><span class="arrow">→</span><i class="fab fa-linkedin"></i><span>Read more</span></a>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h3>Palmtree</h3>
+                        <p class="role">Co-Founder / Operations & Growth</p>
+                        <p class="meta">
+                            <span><i class="fas fa-suitcase"></i> Luggage Delivery MVP, South Korea</span>
+                            <span><i class="fas fa-calendar"></i> Apr 2024 – Jun 2024</span>
+                        </p>
+                        <ul class="achievements">
+                            <li>Designed and executed a low-budget offline-first validation test using physical posters placed in tourist-dense areas.</li>
+                            <li>Invested <span class="metric">₩50,000 (≈ £30)</span> in poster production and placement.</li>
+                            <li>Acquired <span class="metric">10 paying customers</span> within the first days of launch, each paying ₩5,000 (≈ £3) as an initial service fee.</li>
+                            <li>Achieved <span class="metric">break-even validation</span> (₩50,000 revenue on ₩50,000 cost), confirming willingness to pay despite limited tracking infrastructure.</li>
+                            <li>Used the experiment to validate core demand signals rather than optimise conversion rates at an early stage.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item active">
+                        <h3>Student Ambassador</h3>
+                        <p class="role">Coventry University</p>
+                        <p class="meta">
+                            <span><i class="fas fa-calendar"></i> Jul 2024 – Present</span>
+                        </p>
+                        <ul class="achievements">
+                            <li>Acted as first-line support for international and new students during onboarding.</li>
+                            <li>Identified repeated communication issues across departments through direct student interaction.</li>
+                            <li>Relayed qualitative insights to staff to improve clarity and student experience.</li>
+                            <li>Delivered campus tours and Q&A sessions to diverse student groups.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="leadership">
+                <h2>Leadership & Activities</h2>
+                <div class="timeline">
+                    <div class="timeline-item active">
+                        <h3>Startup Society</h3>
+                        <p class="role">Founder & President</p>
+                        <p class="meta">
+                            <span><i class="fas fa-building"></i> CUSU (Coventry University)</span>
+                            <span><i class="fas fa-calendar"></i> Feb 2025 – Oct 2025</span>
+                        </p>
+                        <ul class="achievements">
+                            <li>Founded and led a peer-led startup community from zero.</li>
+                            <li>Designed sessions on ideation, validation, and MVP execution.</li>
+                            <li>Supported students in translating ideas into testable experiments.</li>
+                        </ul>
+                        <a href="https://www.linkedin.com/posts/gyuho-youn-3210722ba_21%EB%85%84%EB%8F%84-%EC%B2%98%EC%9D%8C-%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85%EC%9D%B4%EB%9D%BC%EB%8A%94%EA%B1%B8-%EC%95%8C%EA%B2%8C%EB%90%98%EC%97%88%EA%B3%A0-%EA%B7%B8-%EB%8B%B9%EC%8B%9C-%EA%BF%88%EC%9D%B4-%EC%98%81%EA%B5%AD%EB%8C%80%ED%95%99%EA%B5%90%EC%97%90%EC%84%9C-%EC%8A%A4%ED%83%80%ED%8A%B8%EC%97%85%EC%9D%84-activity-7298746095340277763-tWzV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEyKJkkBf1_1pmErQJLs7eWl22AoEGzkOF4" target="_blank" class="project-link"><span class="arrow">→</span><i class="fab fa-linkedin"></i><span>Read more</span></a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="awards">
+                <h2>Awards & Programmes</h2>
+                <div class="awards-list">
+                    <div class="award-item">
+                        <div class="trophy">🏆</div>
+                        <div class="award-content">
+                            <h4>Coventry Elevator Pitching Competition<a href="https://www.linkedin.com/posts/gyuho-youn-3210722ba_11%EC%9B%94-21%EC%9D%BC%EC%96%B4%EC%A0%9C-%EC%9A%B0%EC%97%B0%ED%9E%88-%EA%B8%B0%ED%9A%8C%EB%A5%BC-%EC%96%BB%EC%96%B4-%EB%8C%80%ED%95%99%EA%B5%90%EC%97%90%EC%84%9C-%EC%97%B4%EB%A6%AC%EB%8A%94-%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%ED%94%BC%EC%B9%98-activity-7265707310214250497-DNVh?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEyKJkkBf1_1pmErQJLs7eWl22AoEGzkOF4" target="_blank" class="award-link"><span class="arrow">→</span><i class="fab fa-linkedin"></i><span>Read</span></a></h4>
+                            <p>1st Place (SYSTEM)</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <div class="trophy">🚀</div>
+                        <div class="award-content">
+                            <h4>Student Venture Accelerator Programme<a href="https://youtu.be/ccrAu3C0sjs" target="_blank" class="award-link youtube"><span class="arrow">→</span><i class="fab fa-youtube"></i><span>Watch</span></a></h4>
+                            <p>Selected Participant</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <div class="trophy">✨</div>
+                        <div class="award-content">
+                            <h4>Launch Programme<a href="https://www.linkedin.com/posts/gyuho-youn-3210722ba_%EC%A7%80%EB%82%9C-%EC%9B%94%EC%9A%94%EC%9D%BC%EB%B6%80%ED%84%B0-%EA%B8%88%EC%9A%94%EC%9D%BC%EA%B9%8C%EC%A7%80-5%EC%9D%BC%EA%B0%84-%EC%BD%94%EB%B2%A4%ED%8A%B8%EB%A6%AC-%EB%8C%80%ED%95%99%EA%B5%90%EC%97%90%EC%84%9C-%EC%A7%84%ED%96%89%ED%95%98%EB%8A%94-launch-activity-7301271795167363073-Kgw6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEyKJkkBf1_1pmErQJLs7eWl22AoEGzkOF4" target="_blank" class="award-link"><span class="arrow">→</span><i class="fab fa-linkedin"></i><span>Read</span></a></h4>
+                            <p>Coventry University</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
